@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CatsPics</string>
+    <string name="pixabay_api_key">16180650-cc5b3804ae28c4b936b61007f</string>
+    <string name="owner_value">Ngacho</string>
+    <string name="likes_value">42 Likes</string>
+    <string name="kitten_pic">Kitten Pic</string>
+
+
+</resources>
