@@ -9,7 +9,10 @@ import kotlin.system.measureTimeMillis
 
 class RetrofitBuilder {
 
-    private val client = OkHttpClient.Builder().callTimeout(20000, TimeUnit.MILLISECONDS).build()
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(50, TimeUnit.SECONDS)
+        .build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://pixabay.com/")
