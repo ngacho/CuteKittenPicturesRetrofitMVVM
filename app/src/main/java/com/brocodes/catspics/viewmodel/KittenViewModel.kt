@@ -13,11 +13,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class KittenViewModel : ViewModel() {
+class KittenViewModel(private val retrofitBuilder: RetrofitBuilder) : ViewModel() {
 
-    private val retrofitBuilder = RetrofitBuilder()
-
-    private lateinit var pixabayResponse: PixabayResponse
     private var kittensList = MutableLiveData<List<ImageItem>>()
 
     fun getKittens(): LiveData<List<ImageItem>> {
@@ -31,7 +28,7 @@ class KittenViewModel : ViewModel() {
         call.enqueue(object : Callback<PixabayResponse> {
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
                 Log.d("Response", "Beep boop, response found")
-                pixabayResponse = response.body()!!
+                val pixabayResponse = response.body()!!
                 Log.d("Response successful", response.toString())
                 kittensList.value = pixabayResponse.hits
             }
@@ -43,13 +40,9 @@ class KittenViewModel : ViewModel() {
         })
     }
 
-
     companion object{
         private val queryValue = "kittens"
         private val api_key = "16180650-cc5b3804ae28c4b936b61007f"
     }
-
-
-
 }
 

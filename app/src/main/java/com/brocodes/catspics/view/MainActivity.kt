@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brocodes.catspics.R
+import com.brocodes.catspics.data.RetrofitBuilder
 import com.brocodes.catspics.viewmodel.KittenViewModel
+import com.brocodes.catspics.viewmodelfactory.KittenViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +26,10 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this.context)
         }
 
-        val kittenViewModel = ViewModelProvider(this).get(KittenViewModel::class.java)
+        val retrofitBuilder = RetrofitBuilder()
+        val viewModelFactory = KittenViewModelFactory(retrofitBuilder)
+
+        val kittenViewModel = ViewModelProvider(this, viewModelFactory).get(KittenViewModel::class.java)
         kittenViewModel.getKittens().observe(this, Observer {
             kittenRecyclerView.adapter = KittenRecyclerViewAdapter(it)
         })

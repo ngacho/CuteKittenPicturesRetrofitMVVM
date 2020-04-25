@@ -4,10 +4,12 @@ import com.brocodes.catspics.model.PixabayMethods
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+import kotlin.system.measureTimeMillis
 
 class RetrofitBuilder {
 
-    private val client = OkHttpClient.Builder().build()
+    private val client = OkHttpClient.Builder().callTimeout(20000, TimeUnit.MILLISECONDS).build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://pixabay.com/")
