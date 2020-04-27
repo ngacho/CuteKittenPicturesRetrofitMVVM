@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="ImageItem"
             type="com.brocodes.catspics.model.ImageItem" />
@@ -37,9 +37,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
-                    app:catImage="@{ImageItem.largeImageURL}"
+                    android:contentDescription="@string/kitten_pic"
                     android:src="@mipmap/ic_launcher"
-                    android:contentDescription="@string/kitten_pic" />
+                    app:catImage="@{ImageItem.largeImageURL}" />
 
                 <ImageView
                     android:id="@+id/kitten_likes_button"
@@ -60,7 +60,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="@{String.valueOf(ImageItem.likes)}" />
+                    android:text="@{String.valueOf(ImageItem.likes) + ` likes`}" />
 
 
                 <ImageView
@@ -70,8 +70,8 @@
                     android:layout_below="@id/kitten_image"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="15dp"
-                    app:profileImage="@{ImageItem.userImageUrl}"
-                    android:layout_marginEnd="25dp" />
+                    android:layout_marginEnd="25dp"
+                    app:profileImage="@{ImageItem.userImageUrl}" />
 
                 <TextView
                     android:id="@+id/owner_name_textview"
