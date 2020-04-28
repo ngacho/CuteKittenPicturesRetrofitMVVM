@@ -14,11 +14,12 @@ class CatRetrofitClient {
         .readTimeout(50, TimeUnit.SECONDS)
         .build()
 
-    private val retrofit = Retrofit.Builder()
+    private val pixabayMethods = Retrofit.Builder()
         .baseUrl("https://pixabay.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
+        .create(PixabayMethods::class.java)
 
-    val pixabayAccessApi: PixabayMethods = retrofit.create(PixabayMethods::class.java)
+    fun getPixabayMethods(): PixabayMethods = pixabayMethods
 }

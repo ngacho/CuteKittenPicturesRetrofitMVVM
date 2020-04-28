@@ -13,7 +13,7 @@ class CatRepository(private val catRetrofitClient: CatRetrofitClient) {
 
     fun loadKittens() : MutableLiveData<List<ImageItem>>{
         Log.d("Load Kittens function", "Beep boop: this method was called")
-        val call = catRetrofitClient.pixabayAccessApi.getKittens(api_key, queryValue)
+        val call = catRetrofitClient.getPixabayMethods().getKittens(api_key, queryValue)
         call.enqueue(object : Callback<PixabayResponse> {
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
                 Log.d("Response", "Beep boop, response found")
