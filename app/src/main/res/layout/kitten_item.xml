@@ -38,7 +38,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
                     android:contentDescription="@string/kitten_pic"
-                    android:src="@mipmap/ic_launcher"
                     app:catImage="@{ImageItem.largeImageURL}" />
 
                 <ImageView
