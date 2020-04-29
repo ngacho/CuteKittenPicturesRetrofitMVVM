@@ -2,7 +2,6 @@ package com.brocodes.catspics.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.brocodes.catspics.data.CatRetrofitClient
 import com.brocodes.catspics.model.CatRepository
 import com.brocodes.catspics.viewmodel.KittenViewModel
 

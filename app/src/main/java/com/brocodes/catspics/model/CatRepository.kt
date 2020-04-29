@@ -3,17 +3,17 @@ package com.brocodes.catspics.model
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.brocodes.catspics.data.CatRetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class CatRepository(private val catRetrofitClient: CatRetrofitClient) {
+class CatRepository @Inject constructor(private val pixabayMethods: PixabayMethods) {
     private var kittensList = MutableLiveData<List<ImageItem>>()
 
     fun loadKittens() : MutableLiveData<List<ImageItem>>{
         Log.d("Load Kittens function", "Beep boop: this method was called")
-        val call = catRetrofitClient.getPixabayMethods().getKittens(api_key, queryValue)
+        val call = pixabayMethods.getKittens(api_key, queryValue)
         call.enqueue(object : Callback<PixabayResponse> {
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
                 Log.d("Response", "Beep boop, response found")

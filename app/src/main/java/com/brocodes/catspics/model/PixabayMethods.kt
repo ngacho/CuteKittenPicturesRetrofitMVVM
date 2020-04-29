@@ -1,6 +1,5 @@
 package com.brocodes.catspics.model
 
-import com.brocodes.catspics.model.PixabayResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
