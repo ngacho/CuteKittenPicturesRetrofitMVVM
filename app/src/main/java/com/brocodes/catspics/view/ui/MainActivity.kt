@@ -11,6 +11,8 @@ import com.brocodes.catspics.databinding.ActivityMainBinding
 import com.brocodes.catspics.di.AppContainer
 import com.brocodes.catspics.view.utils.EndlessScrollListener
 import com.brocodes.catspics.view.utils.KittenRecyclerViewAdapter
+import com.brocodes.catspics.view.utils.ViewPagerAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,8 +21,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mainActivityDataBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        setSupportActionBar(mainActivityDataBinding.toolbar)
 
-        val kittenRecyclerView = mainActivityDataBinding.kittenRecyclerview
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(KittieFragment(), "Kittie")
+        adapter.addFragment(DoggoFragment(), "Doggo")
+        viewPager.adapter = adapter
+        tabs.setupWithViewPager(viewPager)
+/*
+        val kittenRecyclerView = mainActivityDataBinding.
         val kittenLayoutManager = LinearLayoutManager(this)
         kittenRecyclerView.apply {
             setHasFixedSize(true)
@@ -41,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 kittenViewModel.loadMoreKittens(pageNumber)
                 kittenRecyclerViewAdapter.notifyDataSetChanged()
             }
-        })
+        })*/
 
     }
 }
