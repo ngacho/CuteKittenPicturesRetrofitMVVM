@@ -1,4 +1,4 @@
-package com.brocodes.catspics.view
+package com.brocodes.catspics.view.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.KittenItemBinding
-import com.brocodes.catspics.model.ImageItem
+import com.brocodes.catspics.data.ImageItem
 
 
 class KittenRecyclerViewAdapter(private val kittensList: List<ImageItem>) : RecyclerView.Adapter<KittenRecyclerViewAdapter.KittenViewHolder>() {
@@ -15,7 +15,9 @@ class KittenRecyclerViewAdapter(private val kittensList: List<ImageItem>) : Recy
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KittenViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<KittenItemBinding>(inflater, R.layout.kitten_item, parent, false)
-        return KittenViewHolder(binding)
+        return KittenViewHolder(
+            binding
+        )
     }
 
     override fun getItemCount() = if (kittensList.isEmpty()) 0 else kittensList.size

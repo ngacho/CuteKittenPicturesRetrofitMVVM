@@ -1,4 +1,4 @@
-package com.brocodes.catspics.view
+package com.brocodes.catspics.view.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
