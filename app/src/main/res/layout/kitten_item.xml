@@ -6,7 +6,7 @@
 
         <variable
             name="ImageItem"
-            type="com.brocodes.catspics.model.ImageItem" />
+            type="com.brocodes.catspics.data.ImageItem" />
 
     </data>
 

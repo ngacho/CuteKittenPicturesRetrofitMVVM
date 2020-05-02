@@ -1,9 +1,5 @@
-package com.brocodes.catspics.model
+package com.brocodes.catspics.data
 
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
-import com.brocodes.catspics.R
 import com.bumptech.glide.Glide
 
 

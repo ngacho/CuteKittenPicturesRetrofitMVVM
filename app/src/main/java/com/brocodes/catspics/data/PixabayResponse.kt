@@ -1,5 +1,6 @@
-package com.brocodes.catspics.model
+package com.brocodes.catspics.data
 
+import com.brocodes.catspics.data.ImageItem
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

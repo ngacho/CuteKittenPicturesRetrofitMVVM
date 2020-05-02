@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.ActivityMainBinding
 import com.brocodes.catspics.di.AppContainer
+import com.brocodes.catspics.view.utils.KittenRecyclerViewAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         val kittenViewModel = appContainer.kittenViewModel
         kittenViewModel.getKittens().observe(this, Observer {
-            kittenRecyclerView.adapter = KittenRecyclerViewAdapter(it)
+            kittenRecyclerView.adapter =
+                KittenRecyclerViewAdapter(it)
         })
 
     }
