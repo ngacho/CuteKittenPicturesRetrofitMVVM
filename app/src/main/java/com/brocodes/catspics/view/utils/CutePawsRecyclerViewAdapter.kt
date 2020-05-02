@@ -9,7 +9,7 @@ import com.brocodes.catspics.databinding.KittenItemBinding
 import com.brocodes.catspics.data.ImageItem
 
 
-class KittenRecyclerViewAdapter(private val kittensList: List<ImageItem>) : RecyclerView.Adapter<KittenRecyclerViewAdapter.KittenViewHolder>() {
+class CutePawsRecyclerViewAdapter(private val kittensList: List<ImageItem>) : RecyclerView.Adapter<CutePawsRecyclerViewAdapter.KittenViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KittenViewHolder {

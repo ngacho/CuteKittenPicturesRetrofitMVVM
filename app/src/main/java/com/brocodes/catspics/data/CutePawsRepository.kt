@@ -7,14 +7,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CatRepository (private val pixabayMethods: PixabayMethods) {
+class CutePawsRepository (private val pixabayMethods: PixabayMethods) {
     private var kittensList = mutableListOf<ImageItem>()
     private var liveKittensList = MutableLiveData<List<ImageItem>>()
     private lateinit var call: Call<PixabayResponse>
 
-    fun loadKittens() : MutableLiveData<List<ImageItem>>{
+    fun loadKittens(petType : String) : MutableLiveData<List<ImageItem>>{
         Log.d("Load Kittens function", "Beep boop: this method was called")
-        call = pixabayMethods.getKittens()
+        call = pixabayMethods.getPaws(queryValue = petType)
         call.enqueue(object : Callback<PixabayResponse> {
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
                 Log.d("Response", "Beep boop, response found")
@@ -32,9 +32,9 @@ class CatRepository (private val pixabayMethods: PixabayMethods) {
         return liveKittensList
     }
 
-    fun loadMoreKittens(resultPage: Int ) : MutableLiveData<List<ImageItem>>{
+    fun loadMoreKittens(petType: String, resultPage: Int ) : MutableLiveData<List<ImageItem>>{
         Log.i("Load More Kittens", "Beep Boop, loading more kitten pics")
-        call = pixabayMethods.loadMoreKittens(resultPage = resultPage)
+        call = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = resultPage)
         call.enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
                 Log.e("Beep Boop", "Loading more kittens failed ${t.message}")

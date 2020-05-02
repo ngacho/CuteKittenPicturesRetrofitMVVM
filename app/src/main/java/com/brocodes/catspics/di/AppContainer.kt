@@ -2,10 +2,10 @@ package com.brocodes.catspics.di
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.brocodes.catspics.data.CatRepository
+import com.brocodes.catspics.data.CutePawsRepository
 import com.brocodes.catspics.data.PixabayMethods
-import com.brocodes.catspics.viewmodel.KittenViewModel
-import com.brocodes.catspics.viewmodelfactory.KittenViewModelFactory
+import com.brocodes.catspics.viewmodel.CutePawViewModel
+import com.brocodes.catspics.viewmodelfactory.CutePawModelFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -19,9 +19,9 @@ class AppContainer(viewModelStoreOwner: ViewModelStoreOwner) {
         .create(PixabayMethods::class.java)
 
     private val catRepository =
-        CatRepository(pixabayMethods)
+        CutePawsRepository(pixabayMethods)
 
-    private val viewModelFactory = KittenViewModelFactory(catRepository)
+    private val viewModelFactory = CutePawModelFactory(catRepository)
 
-    val kittenViewModel = ViewModelProvider(viewModelStoreOwner, viewModelFactory).get(KittenViewModel::class.java)
+    val kittenViewModel = ViewModelProvider(viewModelStoreOwner, viewModelFactory).get(CutePawViewModel::class.java)
 }

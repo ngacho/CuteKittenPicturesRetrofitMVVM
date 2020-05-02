@@ -3,20 +3,15 @@ package com.brocodes.catspics.view.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.ActivityMainBinding
-import com.brocodes.catspics.di.AppContainer
-import com.brocodes.catspics.view.utils.EndlessScrollListener
-import com.brocodes.catspics.view.utils.KittenRecyclerViewAdapter
+import com.brocodes.catspics.view.utils.CutePawsRecyclerViewAdapter
 import com.brocodes.catspics.view.utils.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var kittenRecyclerViewAdapter: KittenRecyclerViewAdapter
+    private lateinit var cutePawsRecyclerViewAdapter: CutePawsRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
