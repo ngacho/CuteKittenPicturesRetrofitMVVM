@@ -2,18 +2,40 @@ package com.brocodes.catspics.viewmodel
 
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.brocodes.catspics.data.CutePawsRepository
+import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.brocodes.catspics.data.CutePawsDataSource
+import com.brocodes.catspics.data.ImageItem
+import com.brocodes.catspics.data.PixabayMethods
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
-class CutePawViewModel(private val cutePawsRepository: CutePawsRepository) : ViewModel() {
+class CutePawViewModel(private val pixabayMethods: PixabayMethods, private val petType : String) : ViewModel() {
+    var cutePawsLiveData: LiveData<PagedList<ImageItem>>
 
-    fun getCutePaws
-                (petType : String) = cutePawsRepository.loadKittens(petType)
+    init {
+        val config = PagedList.Config.Builder()
+            .setPageSize(20)
+            .setEnablePlaceholders(false)
+            .build()
 
-    fun loadMoreCutePaws
-                (petType: String, resultPage : Int) = cutePawsRepository.loadMoreKittens(petType, resultPage)
+        cutePawsLiveData = initializedPageListBuilder(config).build()
+    }
 
+    private fun initializedPageListBuilder(config: PagedList.Config): LivePagedListBuilder<Int, ImageItem> {
+
+
+        val dataSourceFactory = object : DataSource.Factory<Int, ImageItem>() {
+            override fun create(): DataSource<Int, ImageItem> {
+                return CutePawsDataSource(pixabayMethods, petType)
+            }
+        }
+        return LivePagedListBuilder(dataSourceFactory, config)
+    }
 
 }
 
