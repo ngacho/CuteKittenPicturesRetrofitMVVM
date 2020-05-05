@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.ActivityMainBinding
-import com.brocodes.catspics.view.utils.CutePawsRecyclerViewAdapter
 import com.brocodes.catspics.view.utils.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var cutePawsRecyclerViewAdapter: CutePawsRecyclerViewAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,31 +22,8 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(DoggoFragment(), "Doggo")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
-/*
-        val kittenRecyclerView = mainActivityDataBinding.
-        val kittenLayoutManager = LinearLayoutManager(this)
-        kittenRecyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = kittenLayoutManager
-        }
-
-        val appContainer = AppContainer(this)
-
-        val kittenViewModel = appContainer.kittenViewModel
-        kittenViewModel.getKittens().observe(this, Observer {
-            kittenRecyclerViewAdapter =
-                KittenRecyclerViewAdapter(it)
-            kittenRecyclerView.adapter = kittenRecyclerViewAdapter
-        })
-
-        kittenRecyclerView.addOnScrollListener(object : EndlessScrollListener(kittenLayoutManager){
-            override fun loadMore(pageNumber: Int, recyclerView: RecyclerView) {
-                kittenViewModel.loadMoreKittens(pageNumber)
-                kittenRecyclerViewAdapter.notifyDataSetChanged()
-            }
-        })*/
-
     }
+
 }
 
 
