@@ -1,5 +1,5 @@
-# CuteKittenPicturesRetrofitMVVM
-A simple app that fetches Kitten pictures from pixabay.com using retrofit implemented in an MVVM architectural Pattern
+# Pawsome
+A simple app that displays Kitten and Puppy pictures.
 
 Uses:
 1. MVVM architecture.
