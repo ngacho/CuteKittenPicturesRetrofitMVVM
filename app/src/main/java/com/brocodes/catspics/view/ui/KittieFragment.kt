@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +16,9 @@ import com.brocodes.catspics.databinding.FragmentKittieBinding
 import com.brocodes.catspics.view.utils.CutePawsPagingAdapter
 import com.brocodes.catspics.viewmodel.CutePawViewModel
 import com.brocodes.catspics.viewmodelfactory.CutePawModelFactory
+import com.google.android.gms.common.util.CrashUtils
+import com.google.firebase.crashlytics.internal.CrashlyticsNativeComponent
+import com.google.firebase.crashlytics.internal.common.CrashlyticsCore
 
 
 class KittieFragment : Fragment() {
@@ -29,6 +33,8 @@ class KittieFragment : Fragment() {
             false
         )
 
+
+
         val cutePawsPagingAdapter = CutePawsPagingAdapter()
 
         val kittenRecyclerView = kittenFragmentBinding.kittenRecyclerview
@@ -37,6 +43,7 @@ class KittieFragment : Fragment() {
             setHasFixedSize(true)
             layoutManager = doggoLayoutManager
             adapter = cutePawsPagingAdapter
+
         }
 
         val petType = "Kittens"
