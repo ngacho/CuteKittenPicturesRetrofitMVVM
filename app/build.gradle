@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 29
@@ -83,6 +85,12 @@ dependencies {
 
     def paging_version = "2.1.2"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    /*def firebase_analytics_version = "17.4.0"
+    implementation "com.google.firebase:firebase-analytics:$firebase_analytics_version"*/
+    // Add the Firebase Crashlytics SDK.
+    def firebase_crashlytics_version = "17.0.0"
+    implementation "com.google.firebase:firebase-crashlytics:$firebase_crashlytics_version"
 
 
 }
