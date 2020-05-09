@@ -8,12 +8,12 @@ import retrofit2.Response
 
 class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val petType : String) : PageKeyedDataSource<Int, ImageItem>() {
 
-    private lateinit var call: Call<PixabayResponse>
     private var page = 1
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ImageItem>) {
-        call = pixabayMethods.getPaws(queryValue = petType)
-        call.enqueue(object : Callback<PixabayResponse>{
+        pixabayMethods
+            .getPaws(queryValue = petType)
+            .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
                 Log.d("Response", "Beep boop, response found")
             }
@@ -29,8 +29,9 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
-        call = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
-        call.enqueue(object : Callback<PixabayResponse>{
+        pixabayMethods
+            .loadMorePaws(queryValue = petType, resultPage = params.key)
+            .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
                 Log.d("Response", "Beep boop, response found")
             }
@@ -47,8 +48,9 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
-        call = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
-        call.enqueue(object : Callback<PixabayResponse>{
+        pixabayMethods
+            .loadMorePaws(queryValue = petType, resultPage = params.key)
+            .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
                 Log.d("Response", "Beep boop, response found")
             }

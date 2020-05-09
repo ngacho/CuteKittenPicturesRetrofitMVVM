@@ -14,6 +14,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.brocodes.catspics.R
+import com.brocodes.catspics.constants.PawIdentifiers
 import com.brocodes.catspics.data.CutePawsDataSource
 import com.brocodes.catspics.data.ImageItem
 import com.brocodes.catspics.data.PixabayMethods
@@ -51,11 +52,11 @@ class DoggoFragment : Fragment() {
             adapter = cutePawsPagingAdapter
         }
 
-        val petType = "puppies"
         val pixabayMethods = providePixaBayMethodService()
 
-        val doggoViewModel = ViewModelProvider(this, CutePawModelFactory(pixabayMethods, petType)).get(CutePawViewModel::class.java)
-        doggoViewModel.cutePawsLiveData.observe(this, Observer {
+        val doggoViewModel = ViewModelProvider(viewModelStore, CutePawModelFactory(pixabayMethods, PawIdentifiers.PUPPIES))
+            .get(CutePawViewModel::class.java)
+        doggoViewModel.cutePawsLiveData.observe(viewLifecycleOwner, Observer {
             cutePawsPagingAdapter.submitList(it)
         })
 

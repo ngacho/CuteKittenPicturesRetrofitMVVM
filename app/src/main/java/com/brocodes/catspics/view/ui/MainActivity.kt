@@ -16,11 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val mainActivityDataBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         setSupportActionBar(mainActivityDataBinding.toolbar)
-
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(KittieFragment(), "Kittie")
-        adapter.addFragment(DoggoFragment(), "Doggo")
-        viewPager.adapter = adapter
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(viewPager)
     }
 
