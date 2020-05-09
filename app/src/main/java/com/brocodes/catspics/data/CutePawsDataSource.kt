@@ -56,7 +56,7 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
                 val listing = response.body()
                 val imageItems = listing?.hits
-                callback.onResult(imageItems ?: listOf(), page + 1)
+                callback.onResult(imageItems ?: listOf(), page - 1)
             }
 
         })
