@@ -1,4 +1,4 @@
-package com.brocodes.catspics.view.ui
+package com.brocodes.catspics.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mainActivityDataBinding.toolbar)
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(viewPager)
+
     }
 
 }
