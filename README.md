@@ -6,3 +6,4 @@ Uses:
 2. Retrofit for consuming Rest Apis.
 3. DataBinding library in recyclerview.
 4. Paging Library for Infinite scrolling
+5. Dagger 2 for dependency Injection
