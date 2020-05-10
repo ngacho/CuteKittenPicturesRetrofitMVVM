@@ -5,8 +5,9 @@ import androidx.paging.PageKeyedDataSource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val petType : String) : PageKeyedDataSource<Int, ImageItem>() {
+class CutePawsDataSource @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) : PageKeyedDataSource<Int, ImageItem>() {
 
     private var page = 1
 
@@ -15,10 +16,11 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
             .getPaws(queryValue = petType)
             .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response found")
+                Log.d("Response", "Beep boop, response not found")
             }
 
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
+                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
                 val listing = response.body()
                 val imageItems = listing?.hits
                 callback.onResult(imageItems ?: listOf(), page - 1, page + 1)
@@ -33,10 +35,11 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
             .loadMorePaws(queryValue = petType, resultPage = params.key)
             .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response found")
+                Log.d("Response", "Beep boop, response not found")
             }
 
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
+                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
                 val listing = response.body()
                 val imageItems = listing?.hits
                 callback.onResult(imageItems ?: listOf(), page + 1)
@@ -52,10 +55,11 @@ class CutePawsDataSource(private val pixabayMethods: PixabayMethods, private val
             .loadMorePaws(queryValue = petType, resultPage = params.key)
             .enqueue(object : Callback<PixabayResponse>{
             override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response found")
+                Log.d("Response", "Beep boop, response not found")
             }
 
             override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
+                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
                 val listing = response.body()
                 val imageItems = listing?.hits
                 callback.onResult(imageItems ?: listOf(), page - 1)

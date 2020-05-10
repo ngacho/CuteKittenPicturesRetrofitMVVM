@@ -12,9 +12,10 @@ import com.brocodes.catspics.data.ImageItem
 import com.brocodes.catspics.data.PixabayMethods
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class CutePawViewModel(private val pixabayMethods: PixabayMethods, private val petType : String) : ViewModel() {
+class CutePawViewModel @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) : ViewModel() {
     var cutePawsLiveData: LiveData<PagedList<ImageItem>>
 
     init {

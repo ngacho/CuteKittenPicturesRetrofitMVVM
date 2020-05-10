@@ -1,35 +1,29 @@
-package com.brocodes.catspics.view.ui
+package com.brocodes.catspics.view.ui.puppies
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.brocodes.catspics.R
-import com.brocodes.catspics.constants.PawIdentifiers
-import com.brocodes.catspics.data.CutePawsDataSource
-import com.brocodes.catspics.data.ImageItem
-import com.brocodes.catspics.data.PixabayMethods
-import com.brocodes.catspics.data.providePixaBayMethodService
 import com.brocodes.catspics.databinding.FragmentDoggoBinding
+import com.brocodes.catspics.di.DaggerAppComponent
+import com.brocodes.catspics.di.PetTypeModule
 import com.brocodes.catspics.view.utils.CutePawsPagingAdapter
 import com.brocodes.catspics.viewmodel.CutePawViewModel
-import com.brocodes.catspics.viewmodelfactory.CutePawModelFactory
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
 class DoggoFragment : Fragment() {
+
+    @Inject
+    lateinit var doggoViewModel: CutePawViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,10 +46,7 @@ class DoggoFragment : Fragment() {
             adapter = cutePawsPagingAdapter
         }
 
-        val pixabayMethods = providePixaBayMethodService()
 
-        val doggoViewModel = ViewModelProvider(viewModelStore, CutePawModelFactory(pixabayMethods, PawIdentifiers.PUPPIES))
-            .get(CutePawViewModel::class.java)
         doggoViewModel.cutePawsLiveData.observe(viewLifecycleOwner, Observer {
             cutePawsPagingAdapter.submitList(it)
         })
@@ -64,8 +55,14 @@ class DoggoFragment : Fragment() {
         return doggoFragmentBinding.root
     }
 
+    @Suppress("DEPRACATED")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
-
-
-
+        DaggerAppComponent
+            .builder()
+            .petTypeModule(PetTypeModule("Puppies"))
+            .build()
+            .inject(this)
+    }
 }
