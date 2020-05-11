@@ -2,69 +2,55 @@ package com.brocodes.catspics.data
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 class CutePawsDataSource @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) : PageKeyedDataSource<Int, ImageItem>() {
 
     private var page = 1
 
+    private val job = Job()
+    private val scope = CoroutineScope(Dispatchers.IO + job)
+
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ImageItem>) {
-        pixabayMethods
-            .getPaws(queryValue = petType)
-            .enqueue(object : Callback<PixabayResponse>{
-            override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response not found")
+        scope.launch {
+            try {
+                val response = pixabayMethods.getPaws(queryValue = petType)
+                val imageItems = response.body()?.hits
+                callback.onResult(  imageItems ?: listOf(), 0, page+1)
+            }catch (exception : Exception){
+                Log.e("Cute Paws data source", "Failed to fetch data!")
             }
 
-            override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
-                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
-                val listing = response.body()
-                val imageItems = listing?.hits
-                callback.onResult(imageItems ?: listOf(), page - 1, page + 1)
-
-            }
-
-        })
+        }
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
-        pixabayMethods
-            .loadMorePaws(queryValue = petType, resultPage = params.key)
-            .enqueue(object : Callback<PixabayResponse>{
-            override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response not found")
+        scope.launch {
+            try {
+                val response = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
+                val imageItems = response.body()?.hits
+                callback.onResult(  imageItems ?: listOf(), page+1)
+            } catch (e: Exception) {
+                Log.i("CutePawsDataSource", e.message.toString())
             }
-
-            override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
-                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
-                val listing = response.body()
-                val imageItems = listing?.hits
-                callback.onResult(imageItems ?: listOf(), page + 1)
-
-            }
-
-        })
+        }
 
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, ImageItem>) {
-        pixabayMethods
-            .loadMorePaws(queryValue = petType, resultPage = params.key)
-            .enqueue(object : Callback<PixabayResponse>{
-            override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                Log.d("Response", "Beep boop, response not found")
+        scope.launch {
+            try {
+                val response = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
+                val imageItems = response.body()?.hits
+                callback.onResult(  imageItems ?: listOf(), page - 1)
+            } catch (e: Exception) {
+                Log.i("CutePawsDataSource", e.message.toString())
             }
-
-            override fun onResponse(call: Call<PixabayResponse>, response: Response<PixabayResponse>) {
-                Log.i("Load Before", "Total items found : ${response.body()?.hits?.size}")
-                val listing = response.body()
-                val imageItems = listing?.hits
-                callback.onResult(imageItems ?: listOf(), page - 1)
-            }
-
-        })
+        }
     }
 }
