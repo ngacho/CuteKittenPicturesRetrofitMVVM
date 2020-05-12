@@ -1,4 +1,4 @@
-package com.brocodes.catspics.viewmodel
+package com.brocodes.catspics.ui
 
 
 

@@ -1,7 +1,6 @@
-package com.brocodes.catspics.view.utils
+package com.brocodes.catspics.ui.utils
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
@@ -16,10 +15,7 @@ class CutePawsPagingAdapter :
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageItemViewHolder {val inflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<KittenItemBinding>(inflater, R.layout.kitten_item, parent, false)
-        return ImageItemViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageItemViewHolder = create(parent)
 
     override fun onBindViewHolder(holder: ImageItemViewHolder, position: Int) {
         val imageItem = getItem(position)
@@ -43,6 +39,19 @@ class CutePawsPagingAdapter :
 
             override fun areContentsTheSame(oldItem: ImageItem, newItem: ImageItem): Boolean =
                 newItem == oldItem
+        }
+        fun create(viewGroup: ViewGroup) : ImageItemViewHolder{
+            //created here so we dont leak implementation details to the adapter
+            val inflater = LayoutInflater.from(viewGroup.context)
+
+            val cutePawsItemBinding = DataBindingUtil.inflate<KittenItemBinding>(
+                inflater,
+                R.layout.kitten_item,
+                viewGroup,
+                false
+            )
+
+            return ImageItemViewHolder(cutePawsItemBinding)
         }
     }
 }

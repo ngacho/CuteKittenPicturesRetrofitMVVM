@@ -1,11 +1,11 @@
-package com.brocodes.catspics.view.utils
+package com.brocodes.catspics.ui.utils
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.brocodes.catspics.constants.PawIdentifiers
-import com.brocodes.catspics.view.ui.puppies.DoggoFragment
-import com.brocodes.catspics.view.ui.kittens.KittieFragment
+import com.brocodes.catspics.ui.puppies.DoggoFragment
+import com.brocodes.catspics.ui.kittens.KittieFragment
 import java.lang.IllegalStateException
 
 @Suppress("deprecation")

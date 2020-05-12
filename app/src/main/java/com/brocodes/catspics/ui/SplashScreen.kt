@@ -1,4 +1,4 @@
-package com.brocodes.catspics.view
+package com.brocodes.catspics.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

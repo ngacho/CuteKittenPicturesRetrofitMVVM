@@ -1,4 +1,4 @@
-package com.brocodes.catspics.view.ui.kittens
+package com.brocodes.catspics.ui.puppies
 
 import android.content.Context
 import android.os.Bundle
@@ -8,59 +8,58 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.brocodes.catspics.R
-import com.brocodes.catspics.databinding.FragmentKittieBinding
+import com.brocodes.catspics.databinding.FragmentDoggoBinding
 import com.brocodes.catspics.di.DaggerAppComponent
 import com.brocodes.catspics.di.PetTypeModule
 import com.brocodes.catspics.view.utils.CutePawsPagingAdapter
-import com.brocodes.catspics.viewmodel.CutePawViewModel
+import com.brocodes.catspics.ui.CutePawViewModel
 import javax.inject.Inject
 
+/**
+ * A simple [Fragment] subclass.
+ */
+class DoggoFragment : Fragment() {
 
-class KittieFragment : Fragment() {
-
-    @Inject lateinit var viewModel: CutePawViewModel
+    @Inject
+    lateinit var doggoViewModel: CutePawViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val kittenFragmentBinding: FragmentKittieBinding = DataBindingUtil.inflate(
+        val doggoFragmentBinding: FragmentDoggoBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_kittie,
+            R.layout.fragment_doggo,
             container,
             false
         )
 
-
         val cutePawsPagingAdapter = CutePawsPagingAdapter()
 
-        val kittenRecyclerView = kittenFragmentBinding.kittenRecyclerview
-        val doggoLayoutManager = LinearLayoutManager(context)
-        kittenRecyclerView.apply {
+        val doggoRecyclerView = doggoFragmentBinding.puppyRecyclerview
+        doggoRecyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = doggoLayoutManager
             adapter = cutePawsPagingAdapter
-
         }
 
-        viewModel.cutePawsLiveData.observe(viewLifecycleOwner, Observer {
+
+        doggoViewModel.cutePawsLiveData.observe(viewLifecycleOwner, Observer {
             cutePawsPagingAdapter.submitList(it)
         })
 
         // Inflate the layout for this fragment
-        return kittenFragmentBinding.root
+        return doggoFragmentBinding.root
     }
 
-    @Suppress("DEPRECATED")
+    @Suppress("DEPRACATED")
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-
-        DaggerAppComponent.builder()
-            .petTypeModule(PetTypeModule("Kitten"))
-            .build().inject(this)
+        DaggerAppComponent
+            .builder()
+            .petTypeModule(PetTypeModule("Puppies"))
+            .build()
+            .inject(this)
     }
 }

@@ -22,8 +22,9 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 val response = pixabayMethods.getPaws(queryValue = petType)
                 val imageItems = response.body()?.hits
                 callback.onResult(  imageItems ?: listOf(), 0, page+1)
+                Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             }catch (exception : Exception){
-                Log.e("Cute Paws data source", "Failed to fetch data!")
+                Log.e("DataSource Beep Boop", "Failed to fetch data!")
             }
 
         }
@@ -35,8 +36,9 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 val response = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
                 val imageItems = response.body()?.hits
                 callback.onResult(  imageItems ?: listOf(), page+1)
+                Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             } catch (e: Exception) {
-                Log.i("CutePawsDataSource", e.message.toString())
+                Log.e("DataSource Beep Boop", "Failed to fetch data!")
             }
         }
 
@@ -48,8 +50,9 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 val response = pixabayMethods.loadMorePaws(queryValue = petType, resultPage = params.key)
                 val imageItems = response.body()?.hits
                 callback.onResult(  imageItems ?: listOf(), page - 1)
+                Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             } catch (e: Exception) {
-                Log.i("CutePawsDataSource", e.message.toString())
+                Log.e("DataSource Beep Boop", "Failed to fetch data!")
             }
         }
     }
