@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.ActivityMainBinding
-import com.brocodes.catspics.view.utils.ViewPagerAdapter
+import com.brocodes.catspics.ui.utils.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

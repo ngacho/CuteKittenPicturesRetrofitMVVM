@@ -4,6 +4,7 @@
     <string name="owner_value">Ngacho</string>
     <string name="likes_value">42 Likes</string>
     <string name="kitten_pic">Kitten Pic</string>
+    <string name="unsplash_label">Powered by Unsplash</string>
 
 
 </resources>

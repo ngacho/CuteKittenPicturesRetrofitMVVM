@@ -12,8 +12,8 @@ import com.brocodes.catspics.R
 import com.brocodes.catspics.databinding.FragmentDoggoBinding
 import com.brocodes.catspics.di.DaggerAppComponent
 import com.brocodes.catspics.di.PetTypeModule
-import com.brocodes.catspics.view.utils.CutePawsPagingAdapter
 import com.brocodes.catspics.ui.CutePawViewModel
+import com.brocodes.catspics.ui.utils.CutePawsPagingAdapter
 import javax.inject.Inject
 
 /**
@@ -28,6 +28,7 @@ class DoggoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val doggoFragmentBinding: FragmentDoggoBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_doggo,

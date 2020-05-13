@@ -9,7 +9,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class CutePawsDataSource @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) : PageKeyedDataSource<Int, ImageItem>() {
+class CutePawsDataSource @Inject constructor(
+    private val pixabayMethods : PixabayMethods,
+    private val petType : String
+) : PageKeyedDataSource<Int, ImageItem>() {
 
     private var page = 1
 
@@ -24,7 +27,7 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 callback.onResult(  imageItems ?: listOf(), 0, page+1)
                 Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             }catch (exception : Exception){
-                Log.e("DataSource Beep Boop", "Failed to fetch data!")
+                Log.e("DataSource Beep Boop", "Failed to fetch data: ${exception.message}")
             }
 
         }
@@ -38,7 +41,7 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 callback.onResult(  imageItems ?: listOf(), page+1)
                 Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             } catch (e: Exception) {
-                Log.e("DataSource Beep Boop", "Failed to fetch data!")
+                Log.e("DataSource Beep Boop", "Failed to fetch data: ${e.message}")
             }
         }
 
@@ -52,7 +55,7 @@ class CutePawsDataSource @Inject constructor(private val pixabayMethods: Pixabay
                 callback.onResult(  imageItems ?: listOf(), page - 1)
                 Log.d("DataSource Beep Boop", "${imageItems?.size ?: 0} Images found")
             } catch (e: Exception) {
-                Log.e("DataSource Beep Boop", "Failed to fetch data!")
+                Log.e("DataSource Beep Boop", "Failed to fetch data: ${e.message}")
             }
         }
     }
