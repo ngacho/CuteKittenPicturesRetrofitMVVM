@@ -1,7 +1,7 @@
 # Pawsome
 A simple app that displays Kitten and Puppy pictures.
 
-##Uses:
+## Uses:
 1. MVVM architecture.
 2. Retrofit for consuming Rest Apis.
 3. DataBinding Library.
@@ -10,8 +10,8 @@ A simple app that displays Kitten and Puppy pictures.
 6. Kotlin Coroutines for making network calls.
 
 
-##SET UP
-**create a _PawIdentifier object_ to have the following constants
+## SET UP
+**create a _PawIdentifier object_ to have the following constants**
 ```
 object PawIdentifier{
     const val KITTENS = "Kittens" //Kitten query value in retrofit call
