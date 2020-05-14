@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.brocodes.catspics.R
+import com.brocodes.catspics.constants.PawIdentifiers
 import com.brocodes.catspics.databinding.FragmentKittieBinding
 import com.brocodes.catspics.di.DaggerAppComponent
 import com.brocodes.catspics.di.PetTypeModule
@@ -20,7 +21,8 @@ import javax.inject.Inject
 
 class KittieFragment : Fragment() {
 
-    @Inject lateinit var viewModel: CutePawViewModel
+    @Inject
+    lateinit var viewModel: CutePawViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +62,7 @@ class KittieFragment : Fragment() {
 
 
         DaggerAppComponent.builder()
-            .petTypeModule(PetTypeModule("Kitten"))
+            .petTypeModule(PetTypeModule(PawIdentifiers.KITTENS))
             .build().inject(this)
     }
 }

@@ -1,6 +1,6 @@
 package com.brocodes.catspics.constants
 
-object PawIdentifiers{
+object PawIdentifiers {
 
     const val KITTENS = "Kittens"
     const val PUPPIES = "Puppies"

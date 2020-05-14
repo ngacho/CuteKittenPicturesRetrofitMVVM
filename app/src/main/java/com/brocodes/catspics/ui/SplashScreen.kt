@@ -18,9 +18,15 @@ class SplashScreen : AppCompatActivity() {
         //hiding title bar of this activity
         window.requestFeature(Window.FEATURE_NO_TITLE)
         //making this activity full screen
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
-        val splashScreenBinding = DataBindingUtil.setContentView<ActivitySplashScreenBinding>(this, R.layout.activity_splash_screen)
+        val splashScreenBinding = DataBindingUtil.setContentView<ActivitySplashScreenBinding>(
+            this,
+            R.layout.activity_splash_screen
+        )
 
         val progressBar = splashScreenBinding.progressSplashscreen
         progressBar.visibility = View.VISIBLE
@@ -33,7 +39,7 @@ class SplashScreen : AppCompatActivity() {
             //finish this activity
             finish()
             progressBar.visibility = View.GONE
-        },5000)
+        }, 5000)
 
     }
 }

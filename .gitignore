@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 app/release/app-release.aab
+app/src/main/java/com/brocodes/catspics/contants/PawIdentifiers.kt

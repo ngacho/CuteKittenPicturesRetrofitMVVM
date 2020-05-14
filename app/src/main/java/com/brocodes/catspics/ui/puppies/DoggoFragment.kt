@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.brocodes.catspics.R
+import com.brocodes.catspics.constants.PawIdentifiers
 import com.brocodes.catspics.databinding.FragmentDoggoBinding
 import com.brocodes.catspics.di.DaggerAppComponent
 import com.brocodes.catspics.di.PetTypeModule
@@ -59,7 +60,7 @@ class DoggoFragment : Fragment() {
 
         DaggerAppComponent
             .builder()
-            .petTypeModule(PetTypeModule("Puppies"))
+            .petTypeModule(PetTypeModule(PawIdentifiers.PUPPIES))
             .build()
             .inject(this)
     }

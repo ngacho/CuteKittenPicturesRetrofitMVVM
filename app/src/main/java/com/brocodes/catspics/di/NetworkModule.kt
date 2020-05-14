@@ -20,7 +20,7 @@ class NetworkModule {
     }
 
     companion object {
-        const val BASE_URL = "https://pixabay.com/"
+        const val BASE_URL = "https://pixabay.com"
     }
 
 

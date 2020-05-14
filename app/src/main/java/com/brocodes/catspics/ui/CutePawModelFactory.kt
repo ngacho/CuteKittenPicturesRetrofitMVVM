@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.brocodes.catspics.data.PixabayMethods
 import javax.inject.Inject
 
-class CutePawModelFactory @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) :
+class CutePawModelFactory @Inject constructor(
+    private val pixabayMethods: PixabayMethods,
+    private val petType: String
+) :
     ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

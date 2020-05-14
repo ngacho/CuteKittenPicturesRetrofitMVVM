@@ -1,7 +1,6 @@
 package com.brocodes.catspics.ui
 
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
@@ -15,7 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 
-class CutePawViewModel @Inject constructor(private val pixabayMethods: PixabayMethods, private val petType : String) : ViewModel() {
+class CutePawViewModel @Inject constructor(
+    private val pixabayMethods: PixabayMethods,
+    private val petType: String
+) : ViewModel() {
     var cutePawsLiveData: LiveData<PagedList<ImageItem>>
 
     init {
